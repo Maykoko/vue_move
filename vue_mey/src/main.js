@@ -4,15 +4,33 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import { Button, Cell } from 'mint-ui'
-Vue.component(Button.name, Button)
-Vue.component(Cell.name, Cell)
+//导入 mui的样式
+import './lib/mui/css/mui.css'
+import './lib/mui/css/icons-extra(1).css'
+
+//设置接口根目录
+http://www.lovefg.cn:8899
+
+//导入公共的样式
+import './css/common.less'
+
+//按需导入 mint-ui 相关的样式
+import { Button, Cell, Toast, Header, Swipe, SwipeItem } from 'mint-ui'
+Vue.component(Button.name, Button);
+Vue.component(Cell.name, Cell);
+Vue.component(Header.name, Header);
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 
 Vue.config.productionTip = false
+
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  
+  render: h => h(App),
+  
   router,
-  render : h => h(App)
 })
