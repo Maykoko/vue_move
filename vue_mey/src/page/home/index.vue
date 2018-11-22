@@ -1,45 +1,45 @@
 <template>
   <div class="home_component">
     <mt-swipe :auto="4000">
-  <mt-swipe-item>
-    <a href="#">
-      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542817260820&di=32adc2fb3a535fb9b78105ec8eeaae7c&imgtype=0&src=http%3A%2F%2Fimg3.cache.netease.com%2Fphoto%2F0008%2F2014-01-14%2F9IIDSTCO29GB0008.jpg" alt="">
-    </a>
-  </mt-swipe-item>
-  <mt-swipe-item>2</mt-swipe-item>
-  <mt-swipe-item>3</mt-swipe-item>
+      <mt-swipe-item v-for="(item, index) in arr_imglist" :key="index">
+          <a :href="item.url">
+              <img :src="item.img">
+          </a>
+    </mt-swipe-item>
 </mt-swipe>
-<p>111</p>
+<!-- <p>{{arr_imglist.toString()}}</p> -->
     
   </div>
   
 </template>
 
 <script>
+import { Toast } from "mint-ui";
 
 export default {
   //在使用钩子函数调用 get_banner
-  created() {
-    get_banner()
-  },
 
   //利用 vue-resource 来发送请求后台数据
   //**为了我们设置了接口根目录 */
-  methods: {
-    get_banner() {
-      // GET /someUrl
-      this.$http.get("/someUrl").then(
-        response => {
-          // get body data
-          this.someData = response.body;
-        },
-        response => {
-          // error callback
-        }
-      );
+    data() {
+      return {
+        arr_imglist: []
+      };
+    },
+    created() {
+      this.get_banner();
+    },
+    methods: {
+      get_banner() {
+        // GET /someUrl
+        this.$http.get("api/getlunbo").then(response => {
+          // console.log(response.body.message);
+          this.arr_imglist = response.body.message;
+          console.log(this.arr_imglist);
+        });
+      }
     }
   }
-};
 </script>
 
 <style lang="less">
@@ -54,6 +54,22 @@ export default {
         display: block;
         height: 100%;
         width: 100%;
+      }
+    }
+  }
+
+   // 九宫格样式
+  .mui-grid-view {
+    background-color: #fff;
+    border: none;
+    .mui-table-view-cell {
+      border: none;
+      img {
+        width: 60px;
+        height: 60px;
+      }
+      .mui-media-body {
+        font-size: 13px;
       }
     }
   }

@@ -8,8 +8,14 @@ import router from './router'
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra(1).css'
 
+//因为要像接口发送请求  所以要导入 vue-resource
+import vueResource from 'vue-resource'
+// 注册
+Vue.use(vueResource)
+
 //设置接口根目录
-http://www.lovefg.cn:8899
+Vue.http.options.root = 'http://www.lovegf.cn:8899/'
+
 
 //导入公共的样式
 import './css/common.less'
