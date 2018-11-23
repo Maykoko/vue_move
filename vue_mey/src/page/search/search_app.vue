@@ -1,5 +1,5 @@
 <template>
-  <p>shopcar</p>
+  <h1>search</h1>
 </template>
 
 <script>
@@ -8,4 +8,7 @@
 
 <style lang="less">
 
+h1 {
+  font-size: 80px
+}
 </style>
