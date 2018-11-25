@@ -19,8 +19,11 @@
               <img src="../../images/menu2.png" alt="">
               <div class="mui-media-body">图片分享</div></a></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+              <router-link  @click="toGoods">
               <img src="../../images/menu3.png" alt="">
-              <div class="mui-media-body">商品购买</div></a></li>
+              <div class="mui-media-body" >商品购买</div>
+              </router-link>
+              </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
               <img src="../../images/menu4.png" alt="">
               <div class="mui-media-body">留言反馈</div></a></li>
@@ -43,25 +46,27 @@ export default {
 
   //利用 vue-resource 来发送请求后台数据
   //**为了我们设置了接口根目录 */
-    data() {
-      return {
-        arr_imglist: []
-      };
+  data() {
+    return {
+      arr_imglist: []
+    };
+  },
+  created() {
+    this.getBanner();
+  },
+  methods: {
+    getBanner() {
+      // GET /someUrl
+      this.$http.get("api/getlunbo").then(response => {
+        // console.log(response.body.message);
+        this.arr_imglist = response.body.message;
+      });
     },
-    created() {
-      this.getBanner();
-    },
-    methods: {
-      getBanner() {
-        // GET /someUrl
-        this.$http.get("api/getlunbo").then(response => {
-          // console.log(response.body.message);
-          this.arr_imglist = response.body.message;
-   
-        });
-      }
+    toGoods() {
+      console.log(111);
     }
   }
+};
 </script>
 
 <style lang="less">
@@ -80,7 +85,7 @@ export default {
     }
   }
 
-   // 九宫格样式
+  // 九宫格样式
   .mui-grid-view {
     background-color: #fff;
     border: none;
