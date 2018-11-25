@@ -6,7 +6,8 @@ import  member_component from '../page/member/member_app.vue'
 import  search_component from '../page/search/search_app.vue'
 import  shopcar_component from '../page/shopcar/shopcar_app.vue'
 import  news_list_component from '../page/news/news_list_app.vue'
-// import  news_info_component from '../page/news/news_info_app.vue'
+import  news_info_component from '../page/news/news_info_app.vue'
+import  goods_list_component from '../page/goods/goods_list.vue'
 
 Vue.use(Router)
 
@@ -18,7 +19,8 @@ export default new Router({
     {path:'/search', component:search_component},
     {path:'/shopcar', component:shopcar_component},
     {path:'/news_list', component:news_list_component},
-    // {path:'/news_info', component:news_info_component},
+    {path:'/news_info/:id', component:news_info_component,},
+    {path:'/goods_list', component:goods_list_component,},
     
     
   ]
